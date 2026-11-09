@@ -1,0 +1,235 @@
+//Changes the NFP ion engines to a realistic but painfully slow but realistic value
+
+// ---- Hall thrusters (argon) ------------------------------------------------
+
+@PART[ionArgon-0625]:NEEDS[NearFuturePropulsion]:FINAL // Starlink V2 Mini: 170 mN, 4.2 kW
+{
+	@MODULE[ModuleEnginesFX]
+	{
+		@maxThrust = 0.00017
+		@PROPELLANT[ElectricCharge] { @ratio = 1080.58 }
+	}
+}
+
+@PART[ionArgon-0625-2]:NEEDS[NearFuturePropulsion]:FINAL // AEPS: 600 mN, 12.5 kW
+{
+	@MODULE[ModuleEnginesFX]
+	{
+		@maxThrust = 0.0006
+		@PROPELLANT[ElectricCharge] { @ratio = 1020.55 }
+	}
+}
+
+@PART[ionArgon-0625-3]:NEEDS[NearFuturePropulsion]:FINAL // X3: 5.4 N, 99 kW
+{
+	@MODULE[ModuleEnginesFX]
+	{
+		@maxThrust = 0.0054
+		@PROPELLANT[ElectricCharge] { @ratio = 756.953 }
+	}
+}
+
+// ---- Gridded ion thrusters (xenon) -----------------------------------------
+
+@PART[ionXenon-0625]:NEEDS[NearFuturePropulsion]:FINAL // NEXT: 237 mN, 6.9 kW
+{
+	@MODULE[ModuleEnginesFX]
+	{
+		@maxThrust = 0.000237
+		@PROPELLANT[ElectricCharge] { @ratio = 119629 }
+	}
+}
+
+@PART[ionXenon-0625-2]:NEEDS[NearFuturePropulsion]:FINAL // HiPEP: 670 mN, 39.3 kW
+{
+	@MODULE[ModuleEnginesFX]
+	{
+		@maxThrust = 0.00067
+		@PROPELLANT[ElectricCharge] { @ratio = 553367 }
+	}
+}
+
+@PART[ionXenon-0625-3]:NEEDS[NearFuturePropulsion]:FINAL // DS4G 20 cm design: 2.5 N, 250 kW
+{
+	@MODULE[ModuleEnginesFX]
+	{
+		@maxThrust = 0.0025
+		@PROPELLANT[ElectricCharge] { @ratio = 1892680 }
+	}
+}
+
+// ---- Magnetoplasmadynamic thrusters (lithium) ------------------------------
+
+@PART[mpdt-0625]:NEEDS[NearFuturePropulsion]:FINAL // MAI 30 kW LiLFA: 265 mN, 18.5 kW
+{
+	@MODULE[ModuleEnginesFX]
+	{
+		@maxThrust = 0.000265
+		@PROPELLANT[ElectricCharge] { @ratio = 1040090 }
+	}
+}
+
+@PART[mpdt-125]:NEEDS[NearFuturePropulsion]:FINAL // JPL 120 kW lithium MPD: 2.2 N
+{
+	@MODULE[ModuleEnginesFX]
+	{
+		@maxThrust = 0.002203
+		@PROPELLANT[ElectricCharge] { @ratio = 1426530 }
+	}
+}
+
+@PART[mpdt-25]:NEEDS[NearFuturePropulsion]:FINAL // 1 MW lithium MPD: 18.4 N
+{
+	@MODULE[ModuleEnginesFX]
+	{
+		@maxThrust = 0.01835
+		@PROPELLANT[ElectricCharge] { @ratio = 1426530 }
+	}
+}
+
+// ---- Pulsed inductive thrusters (argon) ------------------------------------
+// PIT Mk V physics: eta 0.5, so thrust = 2 x 0.5 x P / (g0 x 4,000 s) at the low-power end; doubling power doubles Isp.
+
+@PART[pit-0625]:NEEDS[NearFuturePropulsion]:FINAL // PIT Mk V at 5-10 Hz: 0.51 N, 20-40 kW
+{
+	@MODULE[ModuleEnginesFX]
+	{
+		@maxThrust = 0.00051
+		@PROPELLANT[ElectricCharge] { @ratio = 2745.09 }
+	}
+	@MODULE[VariablePowerEngine]
+	{
+		@ConstantThrust = 0.00051
+		@PowerCurve
+		{
+			@key,0 = 0 20
+			@key,1 = 1 40
+		}
+	}
+}
+
+@PART[pit-125]:NEEDS[NearFuturePropulsion]:FINAL // PIT Mk V class at 12.5-25 Hz: 1.27 N, 50-100 kW
+{
+	@MODULE[ModuleEnginesFX]
+	{
+		@maxThrust = 0.0012746
+		@PROPELLANT[ElectricCharge] { @ratio = 2745.09 }
+	}
+	@MODULE[VariablePowerEngine]
+	{
+		@ConstantThrust = 0.0012746
+		@PowerCurve
+		{
+			@key,0 = 0 50
+			@key,1 = 1 100
+		}
+	}
+}
+
+@PART[pit-25]:NEEDS[NearFuturePropulsion]:FINAL // PIT Mk V class at 25-50 Hz: 2.55 N, 100-200 kW
+{
+	@MODULE[ModuleEnginesFX]
+	{
+		@maxThrust = 0.0025493
+		@PROPELLANT[ElectricCharge] { @ratio = 2745.09 }
+	}
+	@MODULE[VariablePowerEngine]
+	{
+		@ConstantThrust = 0.0025493
+		@PowerCurve
+		{
+			@key,0 = 0 100
+			@key,1 = 1 200
+		}
+	}
+}
+
+// ---- VASIMR (argon / xenon) ------------------------------------------------
+// VX-200 thrust per power (5.7 N at 200 kW, 5,000 s). Every thrust key is scaled by the same factor, so the
+// Isp/thrust trade and the xenon mode keep NFP's shape.
+
+@PART[vasimr-0625]:NEEDS[NearFuturePropulsion]:FINAL // one VF-200 core: 2.85 N, 100 kW
+{
+	@MODULE[ModuleEnginesFX]:HAS[#engineID[ArgonMode]]
+	{
+		@maxThrust *= 0.000776567
+		@PROPELLANT[ElectricCharge] { @ratio = 3069.30 }
+	}
+	@MODULE[ModuleEnginesFX]:HAS[#engineID[XenonMode]]
+	{
+		@maxThrust *= 0.000776567
+		@PROPELLANT[ElectricCharge] { @ratio = 67675.1 }
+	}
+	@MODULE[VariableISPEngine]
+	{
+		@EnergyUsage = 100
+		@VARIABLEISPMODE[*],*
+		{
+			@IspThrustCurve { @key,*[1, ] *= 0.000776567 }
+		}
+	}
+}
+
+@PART[vasimr-125]:NEEDS[NearFuturePropulsion]:FINAL // VF-200: 5.7 N, 200 kW
+{
+	@MODULE[ModuleEnginesFX]:HAS[#engineID[ArgonMode]]
+	{
+		@maxThrust *= 0.000387755
+		@PROPELLANT[ElectricCharge] { @ratio = 3069.31 }
+	}
+	@MODULE[ModuleEnginesFX]:HAS[#engineID[XenonMode]]
+	{
+		@maxThrust *= 0.000387755
+		@PROPELLANT[ElectricCharge] { @ratio = 67713.0 }
+	}
+	@MODULE[VariableISPEngine]
+	{
+		@EnergyUsage = 200
+		@VARIABLEISPMODE[*],*
+		{
+			@IspThrustCurve { @key,*[1, ] *= 0.000387755 }
+		}
+	}
+}
+
+@PART[vasimr-25]:NEEDS[NearFuturePropulsion]:FINAL // 2 MW VASIMR: 57 N
+{
+	@MODULE[ModuleEnginesFX]:HAS[#engineID[ArgonMode]]
+	{
+		@maxThrust *= 0.000775510
+		@PROPELLANT[ElectricCharge] { @ratio = 3069.31 }
+	}
+	@MODULE[ModuleEnginesFX]:HAS[#engineID[XenonMode]]
+	{
+		@maxThrust *= 0.000775510
+		@PROPELLANT[ElectricCharge] { @ratio = 67740.3 }
+	}
+	@MODULE[VariableISPEngine]
+	{
+		@EnergyUsage = 2000
+		@VARIABLEISPMODE[*],*
+		{
+			@IspThrustCurve { @key,*[1, ] *= 0.000775510 }
+		}
+	}
+}
+
+// ---- Electric RCS ----------------------------------------------------------
+
+@PART[rcsblock-hall-01]:NEEDS[NearFuturePropulsion]:FINAL // SPT-50: 16.9 mN, 300 W per nozzle
+{
+	@MODULE[ModuleRCSFX]
+	{
+		@thrusterPower = 0.0000169
+		@PROPELLANT[ElectricCharge] { @ratio = 360.72 }
+	}
+}
+
+@PART[rcsblock-pulsedplasma-01]:NEEDS[NearFuturePropulsion]:FINAL // PRS-101: 1.24 mN, 100 W per nozzle
+{
+	@MODULE[ModuleRCSFX]
+	{
+		@thrusterPower = 0.00000124
+		@PROPELLANT[ElectricCharge] { @ratio = 8007450 }
+	}
+}

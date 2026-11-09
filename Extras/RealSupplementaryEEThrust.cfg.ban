@@ -1,0 +1,94 @@
+//Changes the default ion engine thrust to be realistic but painfully slow
+
+@PART[rj_engine_small]:NEEDS[SupplementaryElectricEngines]:FINAL // MR-501B: 0.37 N, 493 W
+{
+	@MODULE[ModuleEngines*]
+	{
+		@maxThrust = 0.00037
+		@PROPELLANT[ElectricCharge] { @ratio = 1998.65 }
+	}
+}
+
+@PART[rj_engine_big]:NEEDS[SupplementaryElectricEngines]:FINAL // MR-502A: 0.80 N, 885 W
+{
+	@MODULE[ModuleEngines*]
+	{
+		@maxThrust = 0.0008
+		@PROPELLANT[ElectricCharge] { @ratio = 1777.9 }
+	}
+}
+
+@PART[SEE_rj_rcs]:NEEDS[SupplementaryElectricEngines]:FINAL // MR-501B per nozzle: 0.37 N, 493 W
+{
+	@MODULE[ModuleRCSFX]
+	{
+		@thrusterPower = 0.00037
+		@PROPELLANT[ElectricCharge] { @ratio = 1998.65 }
+	}
+}
+
+@PART[KO-A1_Teacake]:NEEDS[SupplementaryElectricEngines]:FINAL // MR-509: 254 mN, 1.78 kW
+{
+	@MODULE[ModuleEngines*]
+	{
+		@maxThrust = 0.000254
+		@PROPELLANT[ElectricCharge] { @ratio = 4817.91 }
+	}
+}
+
+@PART[KO-A2_Gumdrop]:NEEDS[SupplementaryElectricEngines]:FINAL // MR-510: 258 mN, 2.2 kW
+{
+	@MODULE[ModuleEngines*]
+	{
+		@maxThrust = 0.000258
+		@PROPELLANT[ElectricCharge] { @ratio = 4929.75 }
+	}
+}
+
+@PART[PPT_22]:NEEDS[SupplementaryElectricEngines]:FINAL // LES-8/9: 0.66 mN, ~44 W
+{
+	@MODULE[ModuleEngines*]
+	{
+		@maxThrust = 0.00000066
+		@PROPELLANT[ElectricCharge] { @ratio = 50000 }
+	}
+}
+
+@PART[PPT_33]:NEEDS[SupplementaryElectricEngines]:FINAL // PRS-101: 1.24 mN, 100 W
+{
+	@MODULE[ModuleEngines*]
+	{
+		@maxThrust = 0.00000124
+		@PROPELLANT[ElectricCharge] { @ratio = 60483.9 }
+	}
+}
+
+@PART[SEE_FEEP_engine]:NEEDS[SupplementaryElectricEngines]:FINAL // FEEP-50: 1.4 mN; ~56 W (est., Alta FT-150's 40 W/mN)
+{
+	@MODULE[ModuleEngines*]
+	{
+		@maxThrust = 0.0000014
+		@PROPELLANT[ElectricCharge] { @ratio = 581.82 }
+	}
+}
+
+// ---- Caesium at real FEEP loads ---------------------------------------------
+// Real FEEPs carry grams to a few kilograms of caesium, mostly in a reservoir built into the thruster.
+// The FEEP gets a 0.25 kg reservoir (est., like the 230 g built into Enpulsion's IFM Nano FEEP).
+// The tanks keep their full rescaled capacity (maxAmount) but start with 1 kg (est.); add more in the VAB
+// with the slider if a mission needs it.
+
+@PART[SEE_FEEP_engine]:NEEDS[SupplementaryElectricEngines]:FINAL // 0.25 kg = 0.1295 L of caesium
+{
+	RESOURCE
+	{
+		name = Caesium
+		amount = 0.1295
+		maxAmount = 0.1295
+	}
+}
+
+@PART[see_indiumTank_0625|see_indiumTank_125|see_indiumTank_radial]:NEEDS[SupplementaryElectricEngines]:FINAL // start with 1 kg = 0.518 L
+{
+	@RESOURCE[Caesium] { @amount = 0.518 }
+}

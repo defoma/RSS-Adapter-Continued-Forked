@@ -1,0 +1,119 @@
+// Stock_Batteries
+// Real battery capacities.
+
+@PART[batteryPack]:FINAL // Z-100: 3.8 kg -> 0.46 kWh (was 1200)
+{
+	@RESOURCE[ElectricCharge]
+	{
+		@amount = 1642
+		@maxAmount = 1642
+	}
+}
+
+@PART[batteryBankMini]:FINAL // Z-200: 14 kg -> 1.68 kWh (was 2400)
+{
+	@RESOURCE[ElectricCharge]
+	{
+		@amount = 6048
+		@maxAmount = 6048
+	}
+}
+
+@PART[ksp_r_largeBatteryPack]:FINAL // Z-400: 10 kg -> 1.20 kWh (was 4800)
+{
+	@RESOURCE[ElectricCharge]
+	{
+		@amount = 4320
+		@maxAmount = 4320
+	}
+}
+
+@PART[batteryBank]:FINAL // Z-1k: 56 kg -> 6.72 kWh (was 12000)
+{
+	@RESOURCE[ElectricCharge]
+	{
+		@amount = 24192
+		@maxAmount = 24192
+	}
+}
+
+@PART[batteryBankLarge]:FINAL // Z-4K: 225 kg -> 27.00 kWh (was 48000)
+{
+	@RESOURCE[ElectricCharge]
+	{
+		@amount = 97200
+		@maxAmount = 97200
+	}
+}
+
+@PART[restock-battery-1875-1]:NEEDS[ReStockPlus]:FINAL // Z-2.5K: 125 kg -> 15.00 kWh (was 30000)
+{
+	@RESOURCE[ElectricCharge]
+	{
+		@amount = 54000
+		@maxAmount = 54000
+	}
+}
+
+@PART[restock-battery-375-1]:NEEDS[ReStockPlus]:FINAL // Z-10K: 500 kg -> 60.00 kWh (was 120000)
+{
+	@RESOURCE[ElectricCharge]
+	{
+		@amount = 216000
+		@maxAmount = 216000
+	}
+}
+
+@PART[ca_battery_s]:NEEDS[CoatlAerospace]:FINAL // CA-25i: 1 kg -> 0.12 kWh (was 300)
+{
+	@RESOURCE[ElectricCharge]
+	{
+		@amount = 432
+		@maxAmount = 432
+	}
+}
+
+@PART[ca_battery_m]:NEEDS[CoatlAerospace]:FINAL // CA-100i: 5 kg -> 0.60 kWh (was 1200)
+{
+	@RESOURCE[ElectricCharge]
+	{
+		@amount = 2160
+		@maxAmount = 2160
+	}
+}
+
+@PART[ca_battery_l]:NEEDS[CoatlAerospace]:FINAL // CA-300i: 15 kg -> 1.80 kWh (was 3600)
+{
+	@RESOURCE[ElectricCharge]
+	{
+		@amount = 6480
+		@maxAmount = 6480
+	}
+}
+
+@PART[mk1-3pod]:FINAL // Mk1-3 = Apollo CM: three 40 Ah silver-zinc entry batteries at 28 V = 3.36 kWh (main power came from the SM fuel cells)
+{
+	@RESOURCE[ElectricCharge]
+	{
+		@amount = 12096
+		@maxAmount = 12096
+	}
+}
+
+@PART[mk2LanderCabin_v2]:FINAL // Mk2 Lander Can = LM ascent stage: two 296 Ah batteries at 28 V = 16.6 kWh
+{
+	@RESOURCE[ElectricCharge]
+	{
+		@amount = 59674
+		@maxAmount = 59674
+	}
+}
+
+@PART[mk1pod_v2]:FINAL // Mk1 = Mercury: batteries were its only power; ~260 W average over Faith 7's 34 h = ~8.8 kWh (est.)
+{
+	@RESOURCE[ElectricCharge]
+	{
+		@amount = 31824
+		@maxAmount = 31824
+	}
+}

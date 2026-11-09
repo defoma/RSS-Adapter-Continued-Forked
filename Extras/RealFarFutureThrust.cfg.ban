@@ -1,0 +1,11 @@
+
+@PART[fft-ffre-plasma-1]:NEEDS[FarFutureTechnologies]:FINAL // Werka AFFRE
+{
+	@MODULE[ModuleEnginesFX]:HAS[#engineID[FissionFragment]] { @maxThrust = 0.043 }	// 43 N at 527,013 s
+	@MODULE[ModuleEnginesFX]:HAS[#engineID[Afterburning]] { @maxThrust = 4.651 }	// 4,651 N at 32,000 s
+}
+
+@PART[fft-antimatter-microfusion-1]:NEEDS[FarFutureTechnologies]:FINAL // AIMStar
+{
+	@MODULE[ModuleEnginesFX]:HAS[#engineID[AIMReactor]] { @maxThrust = 0.055 }	// 55 N at 60,958 s
+}

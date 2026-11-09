@@ -1,0 +1,11 @@
+//Changes the stock ion engine to a realistic but painfully slow thrust value
+
+@PART[ionEngine]:FINAL
+{
+	@description = NASA's xenon ion thruster, flown on Deep Space 1 and Dawn: 0.092 N, 3,100 s, 2.3 kW.
+	@MODULE[ModuleEngine*]
+	{
+		@maxThrust = 0.000092 // 92 mN
+		@PROPELLANT[ElectricCharge] { @ratio = 7600 } // 2.3 EC/s (2.3 kW) at 3.026e-05 Xe units/s
+	}
+}

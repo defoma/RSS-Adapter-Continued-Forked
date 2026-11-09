@@ -1,0 +1,12 @@
+// LRTR has a 100x stronger DSN table for real-size planets, but only applies it with the RealSolarSystem mod.
+// Sol (Sol-Configs) at SystemScale = Real is just as big, so this applies the same table there.
+// Assumes Sol is on Real scale (its default). Don't enable for Quarter or Stock scale.
+// Values copied from LRTR/settings/customBarnKit.cfg (the RealSolarSystem block).
+
+@CUSTOMBARNKIT:NEEDS[SolSystem,LRTRCustomBarnKit,!RealSolarSystem]:FINAL
+{
+	@TRACKING
+	{
+		@DSNRange = 4.2047e11, 8.4093e11, 1.3329e12, 4.2652e12, 1.3649e13, 4.0946e13, 1.1465e14, 3.6688e14, 5.1363e14, 8.9885e14
+	}
+}
